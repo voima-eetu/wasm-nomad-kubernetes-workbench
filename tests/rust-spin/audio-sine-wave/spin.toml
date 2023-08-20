@@ -1,0 +1,15 @@
+spin_version = "1"
+authors = ["eetu", "vojdan"]
+description = ""
+name = "audio-sine-wave"
+trigger = { type = "http", base = "/" }
+version = "0.1.0"
+
+[[component]]
+id = "audio-sine-wave"
+source = "target/wasm32-wasi/release/audio_sine_wave.wasm"
+files = [ { source = "", destination = "/" } ]
+[component.trigger]
+route = "/..."
+[component.build]
+command = "cargo build --target wasm32-wasi --release"

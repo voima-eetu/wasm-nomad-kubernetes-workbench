@@ -1,0 +1,15 @@
+spin_version = "1"
+authors = ["Vojdan <vojdan@outlook.com>"]
+description = ""
+name = "fuzzysearch-http"
+trigger = { type = "http", base = "/" }
+version = "0.1.0"
+
+[[component]]
+id = "fuzzysearch-http"
+source = "main.wasm"
+allowed_http_hosts = [ "static.mrezhi.net" ]
+[component.trigger]
+route = "/..."
+[component.build]
+command = "cargo build --target wasm32-wasi --release"

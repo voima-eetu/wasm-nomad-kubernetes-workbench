@@ -1,0 +1,21 @@
+[package]
+name = "audio-sine-wave"
+authors = ["eetu", "Vojdan <vojdan@outlook.com>", "eetu"]
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+hound = "3.5.0"
+# Crate to simplify working with bytes.
+bytes = "1"
+# General-purpose crate with common HTTP types.
+http = "0.2"
+httpcodec = "0.2.3"
+bytecodec = "0.4.15"
+wasmedge_wasi_socket = "0.4"
+#For out requests
+reqwest_wasi = { version = "0.11", features = ["json"] }
+http_req_wasi  = "0.10"
+url = "1.4.0"

@@ -1,0 +1,27 @@
+[package]
+name = "user-manager"
+authors = ["Vojdan <vojdan@outlook.com>", "eetu"]
+description = ""
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# Useful crate to handle errors.
+anyhow = "1"
+# Crate to simplify working with bytes.
+bytes = "1"
+# General-purpose crate with common HTTP types.
+http = "0.2"
+# Tokio WASI
+tokio_wasi = { version = "1", features = ["rt", "macros", "net", "time", "io-util"]}
+# hyper WASI, HTTP lib
+hyper_wasi = { version = "0.15", features = ["full"]}
+#For out requests
+reqwest_wasi = { version = "0.11", features = ["json"] }
+url = "1.4.0"
+fake = "2.5"
+rand = "0.8"
+serde = { version = "1.0.152", features = ["derive"] }
+serde_json = "1.0"
+
+[workspace]

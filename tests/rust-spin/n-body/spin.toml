@@ -1,0 +1,14 @@
+spin_version = "1"
+authors = ["vojdan"]
+description = ""
+name = "n-body"
+trigger = { type = "http", base = "/" }
+version = "0.1.0"
+
+[[component]]
+id = "n-body"
+source = "target/wasm32-wasi/release/n_body.wasm"
+[component.trigger]
+route = "/..."
+[component.build]
+command = "cargo build --target wasm32-wasi --release"

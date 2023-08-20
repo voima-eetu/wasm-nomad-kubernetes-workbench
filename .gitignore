@@ -1,0 +1,5 @@
+*.wasm
+debug/
+target/
+Cargo.lock
+.spin/

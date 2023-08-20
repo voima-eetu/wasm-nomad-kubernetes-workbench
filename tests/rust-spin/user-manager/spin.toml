@@ -1,0 +1,15 @@
+spin_version = "1"
+authors = ["Vojdan <vojdan@outlook.com>"]
+description = ""
+name = "user-manager"
+trigger = { type = "http", base = "/" }
+version = "0.1.0"
+
+[[component]]
+id = "user-manager"
+source = "target/wasm32-wasi/release/user_manager.wasm"
+allowed_http_hosts = [ "192.168.85.153:3000" ]
+[component.trigger]
+route = "/..."
+[component.build]
+command = "cargo build --target wasm32-wasi --release"
