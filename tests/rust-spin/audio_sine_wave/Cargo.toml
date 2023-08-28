@@ -4,8 +4,8 @@ authors = ["eetu", "Vojdan <vojdan@outlook.com>", "eetu"]
 version = "0.1.0"
 edition = "2021"
 
-[lib]
-crate-type = [ "cdylib" ]
+#[lib]
+#crate-type = [ "cdylib" ]
 
 [dependencies]
 hound = "3.5.0"
