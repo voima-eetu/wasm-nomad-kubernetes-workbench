@@ -1,31 +1,31 @@
 # Copyright (c) HashiCorp, Inc.
 # SPDX-License-Identifier: MPL-2.0
 
-job "rust-spin-user_manager" {
+job "rust-wasmedge-prime-numbers" {
   datacenters = ["dc1"]
   #type        = "batch"
 
-  group "rust-spin-user_manager" {
+  group "rust-wasmedge-prime-numbers" {
     network {
       port "http" { }
     }
 
     service {
-      name = "rust-spin-user_manager"
+      name = "rust-wasmedge-prime-numbers"
       port = "http"
       provider = "nomad"
       tags = [
         "traefik.enable=true",
-        "traefik.http.routers.wasmedge.rule=Host(`rust-spin-user_manager.nomadi.toramolampi.com`)",
+        "traefik.http.routers.wasmedge.rule=Host(`rust-wasmedge-prime-numbers.nomadi.toramolampi.com`)",
         "traefik.http.services.wasmedge.loadbalancer.server.port=${NOMAD_PORT_http}"
       ]
     }
-    task "rust-spin-user_manager" {
+    task "rust-wasmedge-prime-numbers" {
       driver = "wasmedge"
 
       config {
         extra_args = "--env PORT=${NOMAD_PORT_http}"
-        binary = "/home/nomad/rust-spin/user_manager/build/main.wasm"
+        binary = "/home/nomad/rust-wasmedge/prime_numbers/build/main.wasm"
         env = {
           PORT = "${NOMAD_PORT_http}"
         }

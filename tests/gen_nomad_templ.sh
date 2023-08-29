@@ -4,10 +4,12 @@
 # `find . -name main.wasm -type f -exec ./gen_nomad_templ.sh "{}" \;`
 
 WASM_PATH=$(echo $1 | sed -e 's|\./||g')
-NAME=$(echo $1 | xargs dirname | xargs dirname | awk -F/ '{print $(NF-1)"-"$NF}')
+NAME=$(echo $1 | xargs dirname | xargs dirname | awk -F/ '{print $(NF-1)"-"$NF}' | sed -e 's/_/-/g')
 echo $NAME
 
-cat  << EOF > ../nomad_config/$NAME.nomad
+case $NAME in
+	*"wasmedge"*)
+		cat  << EOF > ../nomad_config/$NAME.nomad
 # Copyright (c) HashiCorp, Inc.
 # SPDX-License-Identifier: MPL-2.0
 
@@ -47,3 +49,44 @@ job "$NAME" {
   }
 }
 EOF
+;;
+
+	*"spin"*)
+		SPIN_PATH=$(echo $WASM_PATH | sed -e 's/main.wasm/spin.toml/g')
+		cat << EOF > ../nomad_config/$NAME.nomad
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
+job "$NAME" {
+  datacenters = ["dc1"]
+
+  group "$NAME" {
+    network {
+      port "http" { }
+    }
+
+    service {
+      name = "$NAME"
+      port = "http"
+      provider = "nomad"
+      tags = [
+        "traefik.enable=true",
+        "traefik.http.routers.wasmedge.rule=Host(\`$NAME.nomadi.toramolampi.com\`)",
+        "traefik.http.services.wasmedge.loadbalancer.server.port=\${NOMAD_PORT_http}"
+      ]
+    }
+    task "$NAME" {
+      driver = "spin"
+      env {
+        RUST_LOG   = "spin=trace"
+      }
+      config {
+        listen = "\${NOMAD_IP_http}:\${NOMAD_PORT_http}"
+        file = "/home/nomad/$SPIN_PATH"
+      }
+    }
+  }
+}
+EOF
+;;
+esac

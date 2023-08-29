@@ -1,31 +1,31 @@
 # Copyright (c) HashiCorp, Inc.
 # SPDX-License-Identifier: MPL-2.0
 
-job "rust-wasmedge-n_body" {
+job "rust-wasmedge-fuzzysearch-http" {
   datacenters = ["dc1"]
   #type        = "batch"
 
-  group "rust-wasmedge-n_body" {
+  group "rust-wasmedge-fuzzysearch-http" {
     network {
       port "http" { }
     }
 
     service {
-      name = "rust-wasmedge-n_body"
+      name = "rust-wasmedge-fuzzysearch-http"
       port = "http"
       provider = "nomad"
       tags = [
         "traefik.enable=true",
-        "traefik.http.routers.wasmedge.rule=Host(`rust-wasmedge-n_body.nomadi.toramolampi.com`)",
+        "traefik.http.routers.wasmedge.rule=Host(`rust-wasmedge-fuzzysearch-http.nomadi.toramolampi.com`)",
         "traefik.http.services.wasmedge.loadbalancer.server.port=${NOMAD_PORT_http}"
       ]
     }
-    task "rust-wasmedge-n_body" {
+    task "rust-wasmedge-fuzzysearch-http" {
       driver = "wasmedge"
 
       config {
         extra_args = "--env PORT=${NOMAD_PORT_http}"
-        binary = "/home/nomad/rust-wasmedge/n_body/build/main.wasm"
+        binary = "/home/nomad/rust-wasmedge/fuzzysearch_http/build/main.wasm"
         env = {
           PORT = "${NOMAD_PORT_http}"
         }

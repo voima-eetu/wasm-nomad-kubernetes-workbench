@@ -3,7 +3,6 @@
 
 job "rust-spin-whatlang" {
   datacenters = ["dc1"]
-  #type        = "batch"
 
   group "rust-spin-whatlang" {
     network {
@@ -21,17 +20,13 @@ job "rust-spin-whatlang" {
       ]
     }
     task "rust-spin-whatlang" {
-      driver = "wasmedge"
-
-      config {
-        extra_args = "--env PORT=${NOMAD_PORT_http}"
-        binary = "/home/nomad/rust-spin/whatlang/build/main.wasm"
-        env = {
-          PORT = "${NOMAD_PORT_http}"
-        }
-      }
+      driver = "spin"
       env {
-        PORT = "${NOMAD_PORT_http}"
+        RUST_LOG   = "spin=trace"
+      }
+      config {
+        listen = "${NOMAD_IP_http}:${NOMAD_PORT_http}"
+        file = "/home/nomad/rust-spin/whatlang/build/spin.toml"
       }
     }
   }
