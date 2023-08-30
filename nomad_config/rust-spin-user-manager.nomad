@@ -15,8 +15,8 @@ job "rust-spin-user-manager" {
       provider = "nomad"
       tags = [
         "traefik.enable=true",
-        "traefik.http.routers.wasmedge.rule=Host(`rust-spin-user-manager.nomadi.toramolampi.com`)",
-        "traefik.http.services.wasmedge.loadbalancer.server.port=${NOMAD_PORT_http}"
+        "traefik.http.routers.rust-spin-user-manager.rule=Host(`rust-spin-user-manager.nomadi.toramolampi.com`)",
+        "traefik.http.services.rust-spin-user-manager.loadbalancer.server.port=${NOMAD_PORT_http}"
       ]
     }
     task "rust-spin-user-manager" {

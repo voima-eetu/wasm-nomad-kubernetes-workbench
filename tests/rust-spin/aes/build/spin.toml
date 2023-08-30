@@ -7,7 +7,7 @@ version = "0.1.0"
 
 [[component]]
 id = "aes"
-source = "target/wasm32-wasi/release/aes.wasm"
+source = "main.wasm"
 [component.trigger]
 route = "/..."
 [component.build]

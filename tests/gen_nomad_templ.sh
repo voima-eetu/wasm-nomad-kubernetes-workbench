@@ -28,8 +28,8 @@ job "$NAME" {
       provider = "nomad"
       tags = [
         "traefik.enable=true",
-        "traefik.http.routers.wasmedge.rule=Host(\`$NAME.nomadi.toramolampi.com\`)",
-        "traefik.http.services.wasmedge.loadbalancer.server.port=\${NOMAD_PORT_http}"
+        "traefik.http.routers.$NAME.rule=Host(\`$NAME.nomadi.toramolampi.com\`)",
+        "traefik.http.services.$NAME.loadbalancer.server.port=\${NOMAD_PORT_http}"
       ]
     }
     task "$NAME" {
@@ -71,8 +71,8 @@ job "$NAME" {
       provider = "nomad"
       tags = [
         "traefik.enable=true",
-        "traefik.http.routers.wasmedge.rule=Host(\`$NAME.nomadi.toramolampi.com\`)",
-        "traefik.http.services.wasmedge.loadbalancer.server.port=\${NOMAD_PORT_http}"
+        "traefik.http.routers.$NAME.rule=Host(\`$NAME.nomadi.toramolampi.com\`)",
+        "traefik.http.services.$NAME.loadbalancer.server.port=\${NOMAD_PORT_http}"
       ]
     }
     task "$NAME" {

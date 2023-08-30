@@ -76,7 +76,8 @@ async fn prime_numbers(req: Request<Body>) -> Result<Response<Body>, HyperError>
 //Simple WasmEdge hyper_wasi HTTP server
 #[tokio::main(flavor = "current_thread")]
 async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
-  let addr = SocketAddr::from(([0, 0, 0, 0], 8080));
+  let port: u16 = std::env::var("PORT").unwrap_or("3000".to_string()).parse().unwrap();
+  let addr = SocketAddr::from(([0, 0, 0, 0], port));
 
   let listener = TcpListener::bind(&addr).await?;
   loop {

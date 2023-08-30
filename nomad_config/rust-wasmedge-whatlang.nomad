@@ -16,8 +16,8 @@ job "rust-wasmedge-whatlang" {
       provider = "nomad"
       tags = [
         "traefik.enable=true",
-        "traefik.http.routers.wasmedge.rule=Host(`rust-wasmedge-whatlang.nomadi.toramolampi.com`)",
-        "traefik.http.services.wasmedge.loadbalancer.server.port=${NOMAD_PORT_http}"
+        "traefik.http.routers.rust-wasmedge-whatlang.rule=Host(`rust-wasmedge-whatlang.nomadi.toramolampi.com`)",
+        "traefik.http.services.rust-wasmedge-whatlang.loadbalancer.server.port=${NOMAD_PORT_http}"
       ]
     }
     task "rust-wasmedge-whatlang" {

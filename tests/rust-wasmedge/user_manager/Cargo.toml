@@ -1,5 +1,5 @@
 [package]
-name = "user-manager"
+name = "user_manager"
 authors = ["Vojdan <vojdan@outlook.com>", "eetu"]
 description = ""
 version = "0.1.0"

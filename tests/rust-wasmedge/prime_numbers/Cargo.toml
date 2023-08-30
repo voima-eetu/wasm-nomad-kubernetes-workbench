@@ -1,5 +1,5 @@
 [package]
-name = "prime-numbers"
+name = "prime_numbers"
 authors = ["vojdan","eetu"]
 description = ""
 version = "0.1.0"

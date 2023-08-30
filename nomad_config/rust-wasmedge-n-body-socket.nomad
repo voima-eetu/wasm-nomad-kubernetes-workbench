@@ -16,8 +16,8 @@ job "rust-wasmedge-n-body-socket" {
       provider = "nomad"
       tags = [
         "traefik.enable=true",
-        "traefik.http.routers.wasmedge.rule=Host(`rust-wasmedge-n-body-socket.nomadi.toramolampi.com`)",
-        "traefik.http.services.wasmedge.loadbalancer.server.port=${NOMAD_PORT_http}"
+        "traefik.http.routers.rust-wasmedge-n-body-socket.rule=Host(`rust-wasmedge-n-body-socket.nomadi.toramolampi.com`)",
+        "traefik.http.services.rust-wasmedge-n-body-socket.loadbalancer.server.port=${NOMAD_PORT_http}"
       ]
     }
     task "rust-wasmedge-n-body-socket" {

@@ -15,8 +15,8 @@ job "rust-spin-fuzzysearch-http" {
       provider = "nomad"
       tags = [
         "traefik.enable=true",
-        "traefik.http.routers.wasmedge.rule=Host(`rust-spin-fuzzysearch-http.nomadi.toramolampi.com`)",
-        "traefik.http.services.wasmedge.loadbalancer.server.port=${NOMAD_PORT_http}"
+        "traefik.http.routers.rust-spin-fuzzysearch-http.rule=Host(`rust-spin-fuzzysearch-http.nomadi.toramolampi.com`)",
+        "traefik.http.services.rust-spin-fuzzysearch-http.loadbalancer.server.port=${NOMAD_PORT_http}"
       ]
     }
     task "rust-spin-fuzzysearch-http" {

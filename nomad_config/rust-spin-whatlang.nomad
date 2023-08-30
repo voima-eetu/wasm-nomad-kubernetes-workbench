@@ -15,8 +15,8 @@ job "rust-spin-whatlang" {
       provider = "nomad"
       tags = [
         "traefik.enable=true",
-        "traefik.http.routers.wasmedge.rule=Host(`rust-spin-whatlang.nomadi.toramolampi.com`)",
-        "traefik.http.services.wasmedge.loadbalancer.server.port=${NOMAD_PORT_http}"
+        "traefik.http.routers.rust-spin-whatlang.rule=Host(`rust-spin-whatlang.nomadi.toramolampi.com`)",
+        "traefik.http.services.rust-spin-whatlang.loadbalancer.server.port=${NOMAD_PORT_http}"
       ]
     }
     task "rust-spin-whatlang" {

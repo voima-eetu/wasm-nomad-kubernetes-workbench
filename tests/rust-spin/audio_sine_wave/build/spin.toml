@@ -1,14 +1,16 @@
 spin_version = "1"
-authors = ["vojdan"]
+authors = ["eetu", "vojdan"]
 description = ""
-name = "n-body"
+name = "audio-sine-wave"
 trigger = { type = "http", base = "/" }
 version = "0.1.0"
 
 [[component]]
-id = "n-body"
+id = "audio-sine-wave"
 source = "main.wasm"
+files = [ { source = "", destination = "/" } ]
 [component.trigger]
+executor = { type = "wagi" }
 route = "/..."
 [component.build]
 command = "cargo build --target wasm32-wasi --release"

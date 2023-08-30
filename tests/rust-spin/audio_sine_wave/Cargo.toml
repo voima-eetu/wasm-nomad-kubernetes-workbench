@@ -1,5 +1,5 @@
 [package]
-name = "audio-sine-wave"
+name = "audio_sine_wave"
 authors = ["eetu", "Vojdan <vojdan@outlook.com>", "eetu"]
 version = "0.1.0"
 edition = "2021"

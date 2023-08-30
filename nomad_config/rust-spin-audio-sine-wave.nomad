@@ -15,8 +15,8 @@ job "rust-spin-audio-sine-wave" {
       provider = "nomad"
       tags = [
         "traefik.enable=true",
-        "traefik.http.routers.wasmedge.rule=Host(`rust-spin-audio-sine-wave.nomadi.toramolampi.com`)",
-        "traefik.http.services.wasmedge.loadbalancer.server.port=${NOMAD_PORT_http}"
+        "traefik.http.routers.rust-spin-audio-sine-wave.rule=Host(`rust-spin-audio-sine-wave.nomadi.toramolampi.com`)",
+        "traefik.http.services.rust-spin-audio-sine-wave.loadbalancer.server.port=${NOMAD_PORT_http}"
       ]
     }
     task "rust-spin-audio-sine-wave" {

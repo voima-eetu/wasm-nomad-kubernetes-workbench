@@ -15,8 +15,8 @@ job "rust-spin-prime-numbers" {
       provider = "nomad"
       tags = [
         "traefik.enable=true",
-        "traefik.http.routers.wasmedge.rule=Host(`rust-spin-prime-numbers.nomadi.toramolampi.com`)",
-        "traefik.http.services.wasmedge.loadbalancer.server.port=${NOMAD_PORT_http}"
+        "traefik.http.routers.rust-spin-prime-numbers.rule=Host(`rust-spin-prime-numbers.nomadi.toramolampi.com`)",
+        "traefik.http.services.rust-spin-prime-numbers.loadbalancer.server.port=${NOMAD_PORT_http}"
       ]
     }
     task "rust-spin-prime-numbers" {

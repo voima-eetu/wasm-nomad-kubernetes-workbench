@@ -1,5 +1,5 @@
 [package]
-name = "fuzzysearch-http"
+name = "fuzzysearch_http"
 authors = ["Vojdan <vojdan@outlook.com>"]
 description = ""
 version = "0.1.0"

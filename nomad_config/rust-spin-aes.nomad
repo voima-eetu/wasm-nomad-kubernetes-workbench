@@ -15,8 +15,8 @@ job "rust-spin-aes" {
       provider = "nomad"
       tags = [
         "traefik.enable=true",
-        "traefik.http.routers.wasmedge.rule=Host(`rust-spin-aes.nomadi.toramolampi.com`)",
-        "traefik.http.services.wasmedge.loadbalancer.server.port=${NOMAD_PORT_http}"
+        "traefik.http.routers.rust-spin-aes.rule=Host(`rust-spin-aes.nomadi.toramolampi.com`)",
+        "traefik.http.services.rust-spin-aes.loadbalancer.server.port=${NOMAD_PORT_http}"
       ]
     }
     task "rust-spin-aes" {

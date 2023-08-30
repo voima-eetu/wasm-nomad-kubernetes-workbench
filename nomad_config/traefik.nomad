@@ -3,7 +3,7 @@ job "traefik" {
   type        = "service"
 
   group "traefik" {
-    count = 1
+    count = 3
 
     network {
       mode = "bridge"

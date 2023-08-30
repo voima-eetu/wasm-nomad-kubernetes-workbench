@@ -16,8 +16,8 @@ job "rust-wasmedge-prime-numbers-socket" {
       provider = "nomad"
       tags = [
         "traefik.enable=true",
-        "traefik.http.routers.wasmedge.rule=Host(`rust-wasmedge-prime-numbers-socket.nomadi.toramolampi.com`)",
-        "traefik.http.services.wasmedge.loadbalancer.server.port=${NOMAD_PORT_http}"
+        "traefik.http.routers.rust-wasmedge-prime-numbers-socket.rule=Host(`rust-wasmedge-prime-numbers-socket.nomadi.toramolampi.com`)",
+        "traefik.http.services.rust-wasmedge-prime-numbers-socket.loadbalancer.server.port=${NOMAD_PORT_http}"
       ]
     }
     task "rust-wasmedge-prime-numbers-socket" {

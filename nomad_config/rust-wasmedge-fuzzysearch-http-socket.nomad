@@ -16,8 +16,8 @@ job "rust-wasmedge-fuzzysearch-http-socket" {
       provider = "nomad"
       tags = [
         "traefik.enable=true",
-        "traefik.http.routers.wasmedge.rule=Host(`rust-wasmedge-fuzzysearch-http-socket.nomadi.toramolampi.com`)",
-        "traefik.http.services.wasmedge.loadbalancer.server.port=${NOMAD_PORT_http}"
+        "traefik.http.routers.rust-wasmedge-fuzzysearch-http-socket.rule=Host(`rust-wasmedge-fuzzysearch-http-socket.nomadi.toramolampi.com`)",
+        "traefik.http.services.rust-wasmedge-fuzzysearch-http-socket.loadbalancer.server.port=${NOMAD_PORT_http}"
       ]
     }
     task "rust-wasmedge-fuzzysearch-http-socket" {
