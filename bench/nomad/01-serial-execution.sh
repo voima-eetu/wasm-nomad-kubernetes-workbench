@@ -6,24 +6,24 @@ for test_type in rust-spin-whatlang rust-spin-user-manager rust-spin-n-body rust
 do
   echo "Testing $test_type..."
   BASE_URL="http://$test_type.$NOMAD_URL"
-  case $testing_type in
+  case $test_type in
     *"aes"*)
-      hey -disable-keepalive -z 5m -c 1 -t 0 -o csv -m GET "$BASE_URL/?length=1000&iterations=100" > $test_type-serial.csv
-    *"float-operation"*) then
-      hey -disable-keepalive -z 5m -c 1 -t 0 -o csv -m GET "$BASE_URL?n=10000000" > $test_type-serial.csv
-    *"linear-equations"*) then
-      hey -disable-keepalive -z 5m -c 1 -t 0 -o csv -m GET "$BASE_URL/?unknowns=128" > $test_type-serial.csv
-    *"matmul"*) then
-      hey -disable-keepalive -z 5m -c 1 -t 0 -o csv -m GET "$BASE_URL/?dimensions=50" > $test_type-serial.csv
-    *"fuzzysearch"*) then
-      hey -disable-keepalive -z 5m -c 1 -t 0 -o csv -m GET "$BASE_URL/?search=Hamlet" > $test_type-serial.csv
-    *"n-body"*) then
-      hey -disable-keepalive -z 5m -c 1 -t 0 -o csv -m GET "$BASE_URL/" > $test_type-serial.csv
-    *"prime-numbers"*) then
-      hey -disable-keepalive -z 5m -c 1 -t 0 -o csv -m GET "$BASE_URL/?n=100" > $test_type-serial.csv
-    *"whatlang"*) then
-      hey -disable-keepalive -z 5m -c 1 -t 0 -o csv -m GET "$BASE_URL/?text=The%20quick%20brown%20fox%20jumps%20over%20the%20lazy%20dog" > $test_type-serial.csv
+      hey -disable-keepalive -z 5m -c 1 -t 0 -o csv -m GET "$BASE_URL/?length=1000&iterations=100" > $test_type-serialcsv;;
+    *"float-operation"*)
+      hey -disable-keepalive -z 5m -c 1 -t 0 -o csv -m GET "$BASE_URL?n=10000000" > $test_type-serialcsv;;
+    *"linear-equations"*)
+      hey -disable-keepalive -z 5m -c 1 -t 0 -o csv -m GET "$BASE_URL/?unknowns=128" > $test_type-serialcsv;;
+    *"matmul"*)
+      hey -disable-keepalive -z 5m -c 1 -t 0 -o csv -m GET "$BASE_URL/?dimensions=50" > $test_type-serialcsv;;
+    *"fuzzysearch"*)
+      hey -disable-keepalive -z 5m -c 1 -t 0 -o csv -m GET "$BASE_URL/?search=Hamlet" > $test_type-serialcsv;;
+    *"n-body"*)
+      hey -disable-keepalive -z 5m -c 1 -t 0 -o csv -m GET "$BASE_URL/" > $test_type-serialcsv;;
+    *"prime-numbers"*)
+      hey -disable-keepalive -z 5m -c 1 -t 0 -o csv -m GET "$BASE_URL/?n=100" > $test_type-serialcsv;;
+    *"whatlang"*)
+      hey -disable-keepalive -z 5m -c 1 -t 0 -o csv -m GET "$BASE_URL/?text=The%20quick%20brown%20fox%20jumps%20over%20the%20lazy%20dog" > $test_type-serialcsv;;
     *"user-manager"*)
-      hey -disable-keepalive -z 5m -c 1 -t 0 -o csv -m GET "$BASE_URL/?entries=1" > $test_type-serial.csv
+      hey -disable-keepalive -z 5m -c 1 -t 0 -o csv -m GET "$BASE_URL/?entries=1" > $test_type-serialcsv;;
   esac
 done
