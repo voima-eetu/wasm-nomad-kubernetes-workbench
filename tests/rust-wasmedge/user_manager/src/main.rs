@@ -62,7 +62,7 @@ async fn insert_record(person: &Person) -> String{
 
       let client = reqwest::Client::new();
       match client
-          .request(http::Method::POST, "http://192.168.85.153:3000/prest/public/users?_page_size=10&_page=1")
+          .request(http::Method::POST, "http://10.223.6.99:3000/prest/public/users?_page_size=10&_page=1")
           .headers(headers)
           .body(body_bytes.to_vec())
           .send()

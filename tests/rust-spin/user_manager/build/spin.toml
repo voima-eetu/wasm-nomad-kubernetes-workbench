@@ -8,7 +8,7 @@ version = "0.1.0"
 [[component]]
 id = "user-manager"
 source = "main.wasm"
-allowed_http_hosts = [ "192.168.85.153:3000" ]
+allowed_http_hosts = [ "10.223.6.99:3000" ]
 [component.trigger]
 route = "/..."
 [component.build]

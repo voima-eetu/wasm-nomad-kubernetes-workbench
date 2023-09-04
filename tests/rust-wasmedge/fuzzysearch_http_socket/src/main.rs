@@ -58,12 +58,13 @@ fn fuzzysearch_http(req: Request<String>) -> bytecodec::Result<Response<String>>
     let search_keyword = search_keyword.unwrap();
 
     // Establish a connection
-    let mut stream = TcpStream::connect("www.buildingjavaprograms.com:80").unwrap();
+    let mut stream = TcpStream::connect("10.223.6.99:8000").unwrap();
+    stream.set_nonblocking(true).unwrap();
 
     // Send an HTTP GET request
     let request = format!(
-        "GET /code_files/3ed/ch06/hamlet.txt HTTP/1.1\r\n\
-         Host: www.buildingjavaprograms.com\r\n\
+        "GET /hamlet.txt HTTP/1.1\r\n\
+         Host: 10.223.6.99:8000\r\n\
          Connection: close\r\n\r\n"
     );
     stream.write_all(request.as_bytes()).unwrap();

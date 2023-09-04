@@ -58,7 +58,7 @@ fn fuzzysearch_http(req: Request) -> Result<Response> {
     let response = spin_sdk::http::send(
         http::Request::builder()
             .method("GET")
-            .uri("https://static.mrezhi.net/wasi-sample-files/hamlet.txt")
+            .uri("http://10.223.6.99:8000/hamlet.txt")
             .body(None)?,
     )?;
 

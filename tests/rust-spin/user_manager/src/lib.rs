@@ -57,7 +57,7 @@ fn insert_record(person: &Person) -> String {
     let res = spin_sdk::http::send(
         http::Request::builder()
             .method("POST")
-            .uri("http://192.168.85.153:3000/prest/public/users?_page_size=10&_page=1")
+            .uri("http://10.223.6.99:3000/prest/public/users?_page_size=10&_page=1")
             .header("Content-Type", "application/json")
             .body(Some(body_bytes))
             .unwrap(),
