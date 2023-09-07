@@ -9,7 +9,7 @@ echo $NAME
 
 case $NAME in
 	*"wasmedge"*)
-		cat  << EOF > ../nomad_config/$NAME.nomad
+		cat  << EOF > ../configs/nomad/$NAME.nomad
 # Copyright (c) HashiCorp, Inc.
 # SPDX-License-Identifier: MPL-2.0
 
@@ -53,7 +53,7 @@ EOF
 
 	*"spin"*)
 		SPIN_PATH=$(echo $WASM_PATH | sed -e 's/main.wasm/spin.toml/g')
-		cat << EOF > ../nomad_config/$NAME.nomad
+		cat  << EOF > ../configs/nomad/$NAME.nomad
 # Copyright (c) HashiCorp, Inc.
 # SPDX-License-Identifier: MPL-2.0
 

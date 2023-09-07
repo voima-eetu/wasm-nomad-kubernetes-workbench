@@ -1,0 +1,60 @@
+apiVersion: node.k8s.io/v1
+kind: RuntimeClass
+metadata:
+  name: wasmtime-spin
+handler: spin
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rust-spin-n-body
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rust-spin-n-body
+  template:
+    metadata:
+      labels:
+        app: rust-spin-n-body
+    spec:
+      runtimeClassName: wasmtime-spin
+      containers:
+      - name: rust-spin-n-body
+        image: 10.223.6.99:5000/spin/rust/n_body:v2
+        command: ["/"]
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rust-spin-n-body
+spec:
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      appProtocol: http
+  selector:
+    app: rust-spin-n-body
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: rust-spin-n-body
+  annotations:
+    ingress.kubernetes.io/ssl-redirect: "false"
+    ingressClassName: traefik
+spec:
+  rules:
+    - host: rust-spin-n-body.kubi.toramolampi.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: rust-spin-n-body
+                port:
+                  number: 80

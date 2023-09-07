@@ -1,0 +1,66 @@
+apiVersion: node.k8s.io/v1
+kind: RuntimeClass
+metadata:
+  name: crun
+handler: crun
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rust-wasmedge-n-body-socket
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rust-wasmedge-n-body-socket
+  template:
+    metadata:
+      labels:
+        app: rust-wasmedge-n-body-socket
+      annotations:
+        module.wasm.image/variant: compat-smart
+    spec:
+      runtimeClassName: crun
+      containers:
+      - name: rust-wasmedge-n-body-socket
+        image: 10.223.6.99:5000/wasmedge/rust/n_body_socket:v2
+        command: ["./main.wasm"]
+        args: ["--env", "PORT=80"]
+        env:
+        - name: PORT
+          value: "80"
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rust-wasmedge-n-body-socket
+spec:
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      appProtocol: http
+  selector:
+    app: rust-wasmedge-n-body-socket
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: rust-wasmedge-n-body-socket
+  annotations:
+    ingress.kubernetes.io/ssl-redirect: "false"
+    ingressClassName: traefik
+spec:
+  rules:
+    - host: rust-wasmedge-n-body-socket.kubi.toramolampi.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: rust-wasmedge-n-body-socket
+                port:
+                  number: 80
