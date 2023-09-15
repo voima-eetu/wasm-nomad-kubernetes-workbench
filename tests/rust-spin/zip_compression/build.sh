@@ -2,7 +2,7 @@
 
 set -e
 
-AUTHFILE=~/.docker/config.json
+AUTHFILE=~/.buildah/config.json
 IMAGE_REPOSITORY=ghcr.io/korvoj/wasm-serverless-benchmarks
 
 if [ -n $1 ]
@@ -14,7 +14,7 @@ else
 fi
 
 build_debian() {
-  buildah build \
+  buildah build --platform=wasi/wasm --annotation "module.wasm.image/variant=compat-smart" \
     -f Dockerfile.debian \
     --authfile $AUTHFILE \
     -t debian-rust-zip-compression .
