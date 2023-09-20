@@ -2,7 +2,7 @@ import re
 import time
 from dateutil import parser
 
-myfile = "MESSAGE.json"
+myfile = "MESSAGES.json"
 
 
 r_expression = re.compile(r'.*===K3S-CUSTOM-998===.*reason=\\\"(?P<event>\w+)\\\".*\sobject=\\\"(?P<object>.*)\\\"\stime=\\\"(?P<timestamp>.*?)\\\"')
@@ -18,7 +18,8 @@ with open("parsed.log", "w") as newf:
       namespace, pod_name = contents.group('object').split('/')
       timestamp = contents.group('timestamp')
       timestamp = parser.parse(timestamp)
-      newf.write("{},{},{},{}\n".format(timestamp, namespace, pod_name, event))
+      if event == 'SuccessfulCreate' or event == 'Started':
+        newf.write("{},{},{},{}\n".format(timestamp, namespace, pod_name, event))
 
 with open("parsed.log", "r") as newf:
   lines = newf.readlines()
